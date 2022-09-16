@@ -1,0 +1,3 @@
+[submodule "gradle/android-versions"]
+	path = gradle/android-versions
+	url = https://cren90@github.com/cren90/android-versions.git

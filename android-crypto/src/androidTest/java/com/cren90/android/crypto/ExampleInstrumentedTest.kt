@@ -1,4 +1,4 @@
-package com.cren90.library_template
+package com.cren90.android.crypto
 
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry

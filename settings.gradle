@@ -1,4 +1,5 @@
 pluginManagement {
+    def kotlin_version = "1.7.10"
     repositories {
         gradlePluginPortal()
         google()
@@ -6,7 +7,18 @@ pluginManagement {
         maven { url 'https://maven.google.com' }
         maven { url 'https://jitpack.io'}
     }
+
+    resolutionStrategy{
+        eachPlugin{
+            if(requested.id.id.startsWith("org.jetbrains.kotlin")) {
+                useVersion("${kotlin_version}")
+            }
+        }
+    }
 }
+
+enableFeaturePreview('VERSION_CATALOGS')
+
 dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {
@@ -14,8 +26,15 @@ dependencyResolutionManagement {
         mavenCentral()
         maven { url 'https://maven.google.com' }
         maven { url 'https://jitpack.io'}
+        maven { url 'https://kotlin.bintray.com/kotlinx' }
+        maven { url 'https://kotlin.bintray.com/kotlin' }
+    }
+    versionCatalogs{
+        libs {
+            from(files('gradle/android-versions/libs.versions.toml'))
+        }
     }
 }
-rootProject.name = "Android Library Template"
-include ':app'
-include ':library-template'
+
+rootProject.name = "android-crypto"
+include ':android-crypto'

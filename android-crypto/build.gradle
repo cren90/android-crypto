@@ -1,8 +1,15 @@
 plugins {
     id 'com.android.library'
-    id 'org.jetbrains.kotlin.android'
+    id 'kotlin-android'
+    id 'kotlin-kapt'
     id 'maven-publish'
 }
+
+kapt {
+    correctErrorTypes = true
+}
+
+ext.library_version='1.0.0'
 
 afterEvaluate {
     publishing {
@@ -13,20 +20,28 @@ afterEvaluate {
                 from components.release
                 // You can then customize attributes of the publication as shown below.
                 groupId = "$rootProject.ext.library_group"
-                artifactId = "$rootProject.ext.library_artifact"
-                version = "$rootProject.ext.library_version"
+                artifactId = "$rootProject.name"
+                version = "$library_version"
             }
         }
     }
 }
 android {
+    namespace 'com.cren90.android.crypto'
     compileSdk 32
 
+    publishing {
+        singleVariant('release') {
+            withSourcesJar()
+            withJavadocJar()
+        }
+    }
+
     defaultConfig {
-        minSdk 16
+        minSdk 23
         targetSdk 32
         versionCode 1
-        versionName "$rootProject.ext.library_version"
+        versionName "$library_version"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
@@ -43,16 +58,16 @@ android {
         targetCompatibility JavaVersion.VERSION_11
     }
     kotlinOptions {
-        jvmTarget = '1.11'
+        jvmTarget = JavaVersion.VERSION_11
     }
 }
 
 dependencies {
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk11:$kotlin_version"
-    implementation 'androidx.core:core-ktx:1.7.0'
-    implementation 'androidx.appcompat:appcompat:1.4.1'
-    implementation 'com.google.android.material:material:1.6.0'
-    testImplementation 'junit:junit:4.13.2'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+    implementation libs.android.logging
+    implementation libs.android.common
+    implementation libs.kotlin.common
+    implementation libs.bundles.kotlin
+
+    testImplementation libs.bundles.test
+    androidTestImplementation libs.bundles.test.instrumentation
 }
