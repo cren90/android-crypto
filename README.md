@@ -2,7 +2,7 @@
 A simple library for cryptography
 
 ### Specs
-[![](https://jitpack.io/v/cren90/android-crypto.svg)](https://jitpack.io/#cren90/android-crypto) [![API](https://img.shields.io/badge/API-16%2B-orange.svg?style=flat)](https://android-arsenal.com/api?level=23) [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+[![](https://jitpack.io/v/cren90/android-crypto.svg)](https://jitpack.io/#cren90/android-crypto) [![API](https://img.shields.io/badge/API-23%2B-orange.svg?style=flat)](https://android-arsenal.com/api?level=23) [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
 # Download
 
